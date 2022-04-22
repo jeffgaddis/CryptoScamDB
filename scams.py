@@ -79,10 +79,10 @@ for i in range(len(data)):
 df = pd.DataFrame (iden_lst, columns = ['ID'])
 
 
-df2 = pd.DataFrame (name_lst, columns = ['URL'])
+df2 = pd.DataFrame (name_lst, columns = ['Site'])
 
 
-df3 = pd.DataFrame (url_lst, columns = ['Site'])
+df3 = pd.DataFrame (url_lst, columns = ['URL'])
 
 
 df4 = pd.DataFrame (coin_lst, columns = ['Coin'])
@@ -101,5 +101,5 @@ df8 = pd.DataFrame (rep_lst, columns = ['Reporter'])
 
 # merge all df's together
 merged_df = pd.concat([df, df2, df3, df4, df5, df6, df7, df8], axis=1)
-merged_df.to_csv('scams.csv')
+merged_df.to_csv('scams.csv', index=False)
 print(merged_df)
