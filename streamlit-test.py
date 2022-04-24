@@ -35,5 +35,7 @@ input_q2 = st.text_input('What amount of those coins were targeted in this scam?
 input_q3 = st.text_input('Which wallet do you use to store your coins?')
 input_q4 = st.text_input('Please provide a description below.')
 
+if st.button('Submit'):
+     st.write('Thanks for helping us catch crypto scammers!')
 
 # URLs to crypto scam alrts like whale alert or scam alert, etc?
