@@ -27,6 +27,9 @@ with tables:
 # take df from scams.py
     data = pd.read_csv('scams.csv', index_col=False)
     st.dataframe(data)
+    st.text('\n')
+    num_scams = len(data)
+    st.text('There are currently ' + str(num_scams) + ' scams reported to CryptoScamDB.')
 
     # num_scams = pd.DataFrame(data['URL'].value_counts())
     # print(num_scams)
@@ -49,4 +52,3 @@ if st.button('Submit'):
 
 # URLs to crypto scam alrts like whale alert or scam alert, etc?
 # aggregate and visualize?
-# read descriptions better?
