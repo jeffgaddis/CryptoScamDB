@@ -1,3 +1,42 @@
+# 'encoding=utf-8'
+
+import streamlit as st
+import pandas as pd
+from google.cloud import firestore
+
+header = st.container()
+dataset = st.container()
+tables = st.container()
+questions = st.container()
+
+with header:
+    st.title('CryptoScamDB')
+    st.text('Know of a crypto scam? Please report below to protect your fellow investors!')
+
+with tables:
+    st.header('Scam Watch')
+    st.text('Take a look at scams that we are aware of: ')
+
+    data = pd.read_json('https://testprojectdsci551-default-rtdb.firebaseio.com/__collections__/scams/.json')
+    st.dataframe(data)
+
+    st.text('\n')
+    num_scams = len(data)
+    st.text('There are currently ' + str(num_scams) + ' scams reported to CryptoScamDB.')
+
+with questions:
+    st.subheader('Tell us more: ')
+
+drop = st.selectbox('How many years have you been in crypto?', options=['Select one', '< 1', '1-3', '3-5', '5+'])
+input_q1 = st.text_input('Which coins were targeted in this scam?')
+input_q2 = st.text_input('What amount of those coins were targeted in this scam?')
+input_q3 = st.text_input('Which wallet do you use to store your coins?')
+input_q4 = st.text_input('Please provide a description below.')
+
+if st.button('Submit'):
+     st.write('Thanks for helping us catch crypto scammers!')
+
+
 # Modules
 import pyrebase
 import streamlit as st
@@ -42,4 +81,3 @@ if choice == 'Sign up':
 	if submit:
 		user = auth.create_user_with_email_and_password(email,password)
 		st.success('Your account is created sucessfully!')
-
