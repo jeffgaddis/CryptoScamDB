@@ -48,7 +48,7 @@ if choice == 'Sign up':
         user = auth.sign_in_with_email_and_password(email,password)
         db.child(user['localId']).child("Handle").set(handle)
         db.child(user['localId']).child("ID").set(user['localId'])
-        st.title('Welcome' + handle)
+        st.title('Welcome ' + handle)
         st.info('Login via login drop down selection')
 
 elif choice == 'Login':
@@ -111,14 +111,12 @@ elif bio == 'Report Scams':
         input_q5 = st.text_input('Description')
 
         if st.button('Submit'):
+            #qry = db.child(user['localId']).child("Handle").get()
+            #handle = qry.val()
+            data = {"name": input_q1, "url": input_q2, "coin": input_q3, "addresses": [input_q4], "description": input_q5}
+            db.child("__collections__").child("scams").push(data)
             st.write('Your scam report was submitted sucessfully! Thank you!')
 
-    # with questions:
-    #     description = st.text_input('Please describe the scam:')
-    #     if st.button('Submit'):
-    #     # if description:
-    #         # scam_db = auth.create_user_with_email_and_password(description, 'AbCd12345!!')
-    #         st.success('Your scam report was submitted sucessfully! Thank you!')
  
 
 
