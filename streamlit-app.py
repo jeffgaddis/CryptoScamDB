@@ -68,8 +68,7 @@ if bio == 'Home':
 
     with tables:
         st.header('Scam Watch')
-        st.text('Take a look at scams that we are aware of: ')
-
+        # st.text('Take a look at scams that we are aware of: ')
         @st.cache
         def data_upload():
             df = pd.read_json('https://testprojectdsci551-default-rtdb.firebaseio.com/__collections__/scams/.json')
@@ -80,21 +79,38 @@ if bio == 'Home':
 
         AgGrid(df)
 
-        st.text('\n')
+        # st.text('\n')
         num_scams = len(df)
         st.text('There are currently ' + str(num_scams) + ' scams reported to CryptoScamDB.')
+
+
+elif bio == 'Report Scams':
+    header = st.container()
+    questions = st.container()
+    tables = st.container()
+    questions = st.container()
+    with header:
+        st.title('Report Scams')
 
     with questions:
         st.subheader('Tell us more: ')
 
-    drop = st.selectbox('How many years have you been in crypto?', options=['Select one', '< 1', '1-3', '3-5', '5+'])
-    input_q1 = st.text_input('Which coins were targeted in this scam?')
-    input_q2 = st.text_input('What amount of those coins were targeted in this scam?')
-    input_q3 = st.text_input('Which wallet do you use to store your coins?')
-    input_q4 = st.text_input('Please provide a description below.')
+        drop = st.selectbox('How many years have you been in crypto?', options=['Select one', '< 1', '1-3', '3-5', '5+'])
+        input_q1 = st.text_input('Which coins were targeted in this scam?')
+        input_q2 = st.text_input('What amount of those coins were targeted in this scam?')
+        input_q3 = st.text_input('Which wallet do you use to store your coins?')
+        input_q4 = st.text_input('Please provide a description below.')
 
-    if st.button('Submit'):
-        st.write('Thanks for helping us catch crypto scammers!')
+        if st.button('Submit'):
+            st.write('Your scam report was submitted sucessfully! Thank you!')
+
+    # with questions:
+    #     description = st.text_input('Please describe the scam:')
+    #     if st.button('Submit'):
+    #     # if description:
+    #         # scam_db = auth.create_user_with_email_and_password(description, 'AbCd12345!!')
+    #         st.success('Your scam report was submitted sucessfully! Thank you!')
+ 
 
 # Search for scams tab code
 elif bio == 'Search for Scams':
@@ -183,3 +199,4 @@ elif bio == 'Search for Scams':
                     AgGrid(df)
                 except:
                     pass
+
