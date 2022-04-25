@@ -53,6 +53,12 @@ if choice == 'Sign up':
 
 elif choice == 'Login':
     submit = st.sidebar.button('Login')
+    if submit:
+        user = auth.sign_in_with_email_and_password(email,password)
+        qry = db.child(user['localId']).child("Handle").get()
+        handle = qry.val()
+        st.title('Welcome ' + handle)
+        st.info('Login via login drop down selection')
 
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 bio = st.radio('Jump to',['Home','Search for Scams', 'Report Scams'])
@@ -86,6 +92,7 @@ if bio == 'Home':
         st.text('There are currently ' + str(num_scams) + ' scams reported to CryptoScamDB.')
 
 
+# Report scams tab code
 elif bio == 'Report Scams':
     header = st.container()
     questions = st.container()
@@ -95,13 +102,13 @@ elif bio == 'Report Scams':
         st.title('Report Scams')
 
     with questions:
-        st.subheader('Tell us more: ')
+        st.subheader('List any of the details below about the scam: ')
 
-        drop = st.selectbox('How many years have you been in crypto?', options=['Select one', '< 1', '1-3', '3-5', '5+'])
-        input_q1 = st.text_input('Which coins were targeted in this scam?')
-        input_q2 = st.text_input('What amount of those coins were targeted in this scam?')
-        input_q3 = st.text_input('Which wallet do you use to store your coins?')
-        input_q4 = st.text_input('Please provide a description below.')
+        input_q1 = st.text_input('Scam Name')
+        input_q2 = st.text_input('Website url')
+        input_q3 = st.text_input('Coin Ticker ID')
+        input_q4 = st.text_input('Address')
+        input_q5 = st.text_input('Description')
 
         if st.button('Submit'):
             st.write('Your scam report was submitted sucessfully! Thank you!')
@@ -113,6 +120,7 @@ elif bio == 'Report Scams':
     #         # scam_db = auth.create_user_with_email_and_password(description, 'AbCd12345!!')
     #         st.success('Your scam report was submitted sucessfully! Thank you!')
  
+
 
 # Search for scams tab code
 elif bio == 'Search for Scams':
@@ -201,4 +209,3 @@ elif bio == 'Search for Scams':
                     AgGrid(df)
                 except:
                     pass
-
