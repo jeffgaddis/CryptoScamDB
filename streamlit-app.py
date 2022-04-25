@@ -162,8 +162,11 @@ elif bio == 'Search for Scams':
         if drop == 'Website':
             try:
                 qry = db.child("__collections__").child("scams").order_by_child("url").equal_to(search_text).get()
-                print(qry.key())
-                df = pd.DataFrame.from_dict(qry.val())
+                mylist = []
+                for result in qry:
+                    mylist.append(result.val())
+                    mylist[0]['f'] = [1]
+                    df = pd.DataFrame.from_dict(mylist[0])
 
             except:
                 pass
