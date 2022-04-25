@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 from google.cloud import firestore
 from st_aggrid import AgGrid
-import re
 import requests
 import json
 
@@ -51,6 +50,9 @@ if choice == 'Sign up':
         db.child(user['localId']).child("ID").set(user['localId'])
         st.title('Welcome' + handle)
         st.info('Login via login drop down selection')
+
+elif choice == 'Login':
+    submit = st.sidebar.button('Login')
 
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 bio = st.radio('Jump to',['Home','Search for Scams', 'Report Scams'])
