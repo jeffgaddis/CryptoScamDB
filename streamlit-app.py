@@ -1,8 +1,11 @@
 # 'encoding=utf-8'
-
+import pyrebase
 import streamlit as st
 import pandas as pd
 from google.cloud import firestore
+from st_aggrid import AgGrid
+# pip install streamlit-aggrid==0.0.4
+# pip install streamlit-aggrid
 
 header = st.container()
 dataset = st.container()
@@ -17,11 +20,18 @@ with tables:
     st.header('Scam Watch')
     st.text('Take a look at scams that we are aware of: ')
 
-    data = pd.read_json('https://testprojectdsci551-default-rtdb.firebaseio.com/__collections__/scams/.json')
-    st.dataframe(data)
+    @st.cache
+    def data_upload():
+        df = pd.read_json('https://testprojectdsci551-default-rtdb.firebaseio.com/__collections__/scams/.json')
+        return df
+
+    df = data_upload()
+    # st.dataframe(data=df)
+
+    AgGrid(df)
 
     st.text('\n')
-    num_scams = len(data)
+    num_scams = len(df)
     st.text('There are currently ' + str(num_scams) + ' scams reported to CryptoScamDB.')
 
 with questions:
@@ -35,13 +45,6 @@ input_q4 = st.text_input('Please provide a description below.')
 
 if st.button('Submit'):
      st.write('Thanks for helping us catch crypto scammers!')
-
-
-# Modules
-import pyrebase
-import streamlit as st
-import pandas as pd
-from datetime import datetime
 
 
 # Configuration Key
