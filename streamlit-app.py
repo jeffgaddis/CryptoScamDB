@@ -72,7 +72,7 @@ st.sidebar.title("Crypto Scam DB")
 choice = st.sidebar. selectbox('Login/Signup', ['Login', 'Sign up'])
 
 email = st.sidebar.text_input('Please enter your email address')
-password = st.sidebar.text_input('Please enter your password')
+password = st.sidebar.text_input('Please enter your password',type = 'password')
 
 if choice == 'Sign up':
 	handle = st.sidebar.text_input('Please input a user name',value = 'Default')
