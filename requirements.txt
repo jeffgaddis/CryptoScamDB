@@ -1,0 +1,7 @@
+streamlit
+pandas
+google-cloud-firestore
+streamlit-aggrid
+pyrebase4
+requests
+json
