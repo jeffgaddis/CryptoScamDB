@@ -82,7 +82,7 @@ if bio == 'Home':
         # st.text('Take a look at scams that we are aware of: ')
         @st.cache
         def data_upload():
-            df = pd.read_json('https://testprojectdsci551-default-rtdb.firebaseio.com/__collections__/scams/.json')
+            df = pd.read_json('https://testprojectdsci551-default-rtdb.firebaseio.com/__collections__/scams/.json').T
             return df
 
         df = data_upload()
