@@ -7,6 +7,9 @@ import requests
 import json
 
 
+st.title('CryptoScamDB')
+st.image('https://time.com/nextadvisor/wp-content/uploads/2021/11/Common-crypto-scams-to-watch-out-for-884x584.jpg')
+
 # Configuration Key
 firebaseConfig = {
   'apiKey': "AIzaSyAs7s4nBspSeIeekJmoq-rMhE9in_9xsiM",
@@ -71,7 +74,7 @@ if bio == 'Home':
     questions = st.container()
 
     with header:
-        st.title('CryptoScamDB')
+        st.title('Welcome!')
         st.text('Know of a crypto scam? Please report below to protect your fellow investors!')
 
     with tables:
